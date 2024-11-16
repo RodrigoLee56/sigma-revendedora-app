@@ -16,6 +16,7 @@ public class Cliente {
 
 	@Id
 	private String cpf;
+	
 	private String name;
 	private String endereco;
 	private String telefone;
