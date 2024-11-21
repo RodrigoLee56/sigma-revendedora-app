@@ -56,8 +56,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public List<Cliente> listarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		return clienteRepository.findAll();
 	}
 
 	@Override
