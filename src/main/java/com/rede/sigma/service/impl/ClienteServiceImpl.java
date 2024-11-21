@@ -2,6 +2,8 @@ package com.rede.sigma.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.rede.sigma.domain.Cliente.Cliente;
@@ -16,11 +18,10 @@ import lombok.AllArgsConstructor;
 @Service
 public class ClienteServiceImpl implements ClienteService {
 
-	
 	private ClienteRepository clienteRepository;
 
 	@Override
-	public Cliente salvar(Cliente cliente){
+	public Cliente salvar(Cliente cliente) {
 		if (!CpfValidator.isValid(cliente.getCpf())) {
 			throw new InvalidCpfException("CPF Inválido!");
 		}
@@ -28,19 +29,28 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
-	public Cliente atualizar(Long id, Cliente cliente) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cliente atualizar(String cpf, Cliente cliente) {
+		if (!CpfValidator.isValid(cliente.getCpf())) {
+			throw new InvalidCpfException("CPF inválido!");
+		}
+		Cliente clienteExistente = clienteRepository.findById(cpf)
+				.orElseThrow(() -> new RuntimeException("Cliente não encontrado com CPF: " + cpf));
+		clienteExistente.setNome(cliente.getNome());
+		clienteExistente.setEndereco(cliente.getEndereco());
+		clienteExistente.setTelefone(cliente.getTelefone());
+		clienteExistente.setRenda(cliente.getRenda());
+
+		return clienteRepository.save(clienteExistente);
 	}
 
 	@Override
-	public void deletar(Long id) {
+	public void deletar(String cpf) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Cliente buscarPorId(Long id) {
+	public Cliente buscarPorCpf(String cpf) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -53,6 +63,12 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public List<Cliente> listarOrdenadosPorNome() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Page<Cliente> listarPaginado(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
