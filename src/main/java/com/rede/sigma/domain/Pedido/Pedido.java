@@ -1,11 +1,13 @@
 package com.rede.sigma.domain.Pedido;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.rede.sigma.domain.Cliente.Cliente;
 import com.rede.sigma.domain.Montadora.Montadora;
 import com.rede.sigma.domain.Vendedor.Vendedor;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -40,5 +42,7 @@ public class Pedido {
 	private Integer ano;
 	private String cor;
 	private String acessorios;
-	private Double valor;
+
+	@Column(columnDefinition = "NUMERIC(10, 2)")
+	private BigDecimal valor;
 }
