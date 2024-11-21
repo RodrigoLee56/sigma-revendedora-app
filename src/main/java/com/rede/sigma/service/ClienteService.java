@@ -19,4 +19,6 @@ public interface ClienteService {
 
 	List<Cliente> listarTodos();
 
+	List<Cliente> listarOrdenadosPorNome();
+
 }
