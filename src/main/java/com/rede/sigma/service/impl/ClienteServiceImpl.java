@@ -61,8 +61,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public List<Cliente> listarOrdenadosPorNome() {
-		// TODO Auto-generated method stub
-		return null;
+		return clienteRepository.findAllOrderedByName();
 	}
 
 	@Override
