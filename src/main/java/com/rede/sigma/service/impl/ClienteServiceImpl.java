@@ -45,8 +45,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public void deletar(String cpf) {
-		// TODO Auto-generated method stub
-
+		clienteRepository.deleteById(cpf);
 	}
 
 	@Override
