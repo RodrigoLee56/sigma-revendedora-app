@@ -39,8 +39,8 @@ public class VendedorServiceImpl implements VendedorService {
 
 	@Override
 	public Vendedor buscarPorCodigo(Integer codigo) {
-		// TODO Auto-generated method stub
-		return null;
+		return vendedorRepository.findById(codigo)
+				.orElseThrow(() -> new VendedorNotFoundException("Vendedor não encontrado com código: " + codigo));
 	}
 
 	@Override
