@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.rede.sigma.domain.Vendedor.Vendedor;
+import com.rede.sigma.exeption.VendedorNotFoundException;
 import com.rede.sigma.repository.VendedorRepository;
 import com.rede.sigma.service.VendedorService;
 
@@ -26,7 +27,7 @@ public class VendedorServiceImpl implements VendedorService {
 	@Override
 	public Vendedor atualizar(Integer codigo, Vendedor vendedor) {
 		Vendedor vendedorExistente = vendedorRepository.findById(codigo)
-				.orElseThrow(() -> new RuntimeException("Vendedor não encontrado com código: " + codigo));
+				.orElseThrow(() -> new VendedorNotFoundException("Vendedor não encontrado com código: " + codigo));
 		vendedorExistente.setUsuario(vendedor.getUsuario());
 		return vendedorRepository.save(vendedorExistente);
 	}
