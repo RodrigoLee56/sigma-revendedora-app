@@ -50,8 +50,7 @@ public class VendedorServiceImpl implements VendedorService {
 
 	@Override
 	public Page<Vendedor> listarPaginado(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return vendedorRepository.findAll(pageable);
 	}
 
 }
