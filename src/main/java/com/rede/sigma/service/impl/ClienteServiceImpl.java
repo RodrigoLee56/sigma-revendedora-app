@@ -67,8 +67,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public Page<Cliente> listarPaginado(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return clienteRepository.findAll(pageable);
 	}
 
 }
