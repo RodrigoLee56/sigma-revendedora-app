@@ -45,8 +45,7 @@ public class VendedorServiceImpl implements VendedorService {
 
 	@Override
 	public List<Vendedor> listarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		return vendedorRepository.findAll();
 	}
 
 	@Override
