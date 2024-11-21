@@ -4,16 +4,23 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.rede.sigma.domain.Vendedor.Vendedor;
+import com.rede.sigma.repository.VendedorRepository;
 import com.rede.sigma.service.VendedorService;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Service
 public class VendedorServiceImpl implements VendedorService {
+
+	private VendedorRepository vendedorRepository;
 
 	@Override
 	public Vendedor salvar(Vendedor vendedor) {
-		// TODO Auto-generated method stub
-		return null;
+		return vendedorRepository.save(vendedor);
 	}
 
 	@Override
@@ -25,7 +32,7 @@ public class VendedorServiceImpl implements VendedorService {
 	@Override
 	public void deletar(Integer codigo) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
