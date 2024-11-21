@@ -25,8 +25,10 @@ public class VendedorServiceImpl implements VendedorService {
 
 	@Override
 	public Vendedor atualizar(Integer codigo, Vendedor vendedor) {
-		// TODO Auto-generated method stub
-		return null;
+		Vendedor vendedorExistente = vendedorRepository.findById(codigo)
+				.orElseThrow(() -> new RuntimeException("Vendedor não encontrado com código: " + codigo));
+		vendedorExistente.setUsuario(vendedor.getUsuario());
+		return vendedorRepository.save(vendedorExistente);
 	}
 
 	@Override
