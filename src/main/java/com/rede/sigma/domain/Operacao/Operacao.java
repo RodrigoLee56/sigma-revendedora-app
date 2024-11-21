@@ -1,15 +1,18 @@
 package com.rede.sigma.domain.Operacao;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.rede.sigma.domain.Cliente.Cliente;
 import com.rede.sigma.domain.Veiculo.Veiculo;
 import com.rede.sigma.domain.Vendedor.Vendedor;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -29,7 +32,7 @@ public class Operacao {
 	private Long numero;
 
 	@Temporal(TemporalType.DATE)
-	private Date date;
+	private Date data;
 
 	@ManyToOne
 	private Cliente cliente;
@@ -38,9 +41,15 @@ public class Operacao {
 	private Vendedor vendedor;
 
 	@ManyToOne
+	@JoinColumn(name = "veiculo_numero_chassi")
 	private Veiculo veiculo;
 
-	private Double valorEntrada;
-	private Double valorFinanciado;
-	private Double valorTotal;
+	@Column(name = "valor_entrada")
+	private BigDecimal valorEntrada;
+
+	@Column(name = "valor_financiado")
+	private BigDecimal valorFinanciado;
+
+	@Column(name = "valor_total")
+	private BigDecimal valorTotal;
 }
