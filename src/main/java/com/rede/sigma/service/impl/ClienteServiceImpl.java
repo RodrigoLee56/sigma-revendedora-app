@@ -50,8 +50,8 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public Cliente buscarPorCpf(String cpf) {
-		// TODO Auto-generated method stub
-		return null;
+		return clienteRepository.findById(cpf)
+				.orElseThrow(() -> new RuntimeException("Cliente não encontrado com CPF: " + cpf));
 	}
 
 	@Override
