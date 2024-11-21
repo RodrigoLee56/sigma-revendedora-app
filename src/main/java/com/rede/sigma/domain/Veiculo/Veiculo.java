@@ -1,5 +1,8 @@
 package com.rede.sigma.domain.Veiculo;
 
+import java.math.BigDecimal;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -23,5 +26,7 @@ public class Veiculo {
 	private Integer anoFabricacao;
 	private Integer anoModelo;
 	private String cor;
-	private Double valor;
+	
+	@Column(columnDefinition = "NUMERIC(10, 2)")
+	private BigDecimal valor;
 }
