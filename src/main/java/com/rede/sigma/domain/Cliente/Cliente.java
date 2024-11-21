@@ -1,5 +1,8 @@
 package com.rede.sigma.domain.Cliente;
 
+import java.math.BigDecimal;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -20,5 +23,7 @@ public class Cliente {
 	private String nome;
 	private String endereco;
 	private String telefone;
-	private Double renda;
+	@Column(columnDefinition = "NUMERIC(10, 2)")
+	private BigDecimal renda;
+
 }
