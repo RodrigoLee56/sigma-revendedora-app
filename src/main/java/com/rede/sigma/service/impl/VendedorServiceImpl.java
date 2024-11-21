@@ -34,8 +34,7 @@ public class VendedorServiceImpl implements VendedorService {
 
 	@Override
 	public void deletar(Integer codigo) {
-		// TODO Auto-generated method stub
-
+		vendedorRepository.deleteById(codigo);
 	}
 
 	@Override
