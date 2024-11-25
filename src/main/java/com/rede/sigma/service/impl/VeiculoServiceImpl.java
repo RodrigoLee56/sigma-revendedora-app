@@ -41,8 +41,7 @@ public class VeiculoServiceImpl implements VeiculoService {
 
 	@Override
 	public List<Veiculo> listarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		return veiculoRepository.findAll();
 	}
 
 	@Override
