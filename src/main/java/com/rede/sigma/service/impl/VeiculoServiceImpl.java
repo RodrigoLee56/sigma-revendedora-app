@@ -13,14 +13,13 @@ import com.rede.sigma.service.VeiculoService;
 
 @Service
 public class VeiculoServiceImpl implements VeiculoService {
-	
+
 	@Autowired
 	private VeiculoRepository veiculoRepository;
 
 	@Override
 	public Veiculo salvar(Veiculo veiculo) {
-		// TODO Auto-generated method stub
-		return null;
+		return veiculoRepository.save(veiculo);
 	}
 
 	@Override
@@ -32,7 +31,7 @@ public class VeiculoServiceImpl implements VeiculoService {
 	@Override
 	public void deletar(String numeroChassi) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
