@@ -30,8 +30,7 @@ public class VeiculoServiceImpl implements VeiculoService {
 
 	@Override
 	public void deletar(String numeroChassi) {
-		// TODO Auto-generated method stub
-
+		veiculoRepository.deleteById(numeroChassi);
 	}
 
 	@Override
