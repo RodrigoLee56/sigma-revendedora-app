@@ -41,8 +41,7 @@ public class MontadoraServiceImpl implements MontadoraService {
 
 	@Override
 	public List<Montadora> listarTodas() {
-		// TODO Auto-generated method stub
-		return null;
+		 return montadoraRepository.findAll();
 	}
 
 	@Override
