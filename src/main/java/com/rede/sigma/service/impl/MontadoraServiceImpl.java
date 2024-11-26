@@ -41,8 +41,8 @@ public class MontadoraServiceImpl implements MontadoraService {
 
 	@Override
 	public Montadora buscarPorCnpj(String cnpj) {
-		// TODO Auto-generated method stub
-		return null;
+		return montadoraRepository.findById(cnpj)
+				.orElseThrow(() -> new MontadoraNotFoundException("Montadora não encontrada com CNPJ: " + cnpj));
 	}
 
 	@Override
