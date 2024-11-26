@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.rede.sigma.domain.Montadora.Montadora;
+import com.rede.sigma.exeption.MontadoraNotFoundException;
 import com.rede.sigma.repository.MontadoraRepository;
 import com.rede.sigma.service.MontadoraService;
 
@@ -24,8 +25,13 @@ public class MontadoraServiceImpl implements MontadoraService {
 
 	@Override
 	public Montadora atualizar(String cnpj, Montadora montadora) {
-		// TODO Auto-generated method stub
-		return null;
+		Montadora montadoraExistente = montadoraRepository.findById(cnpj)
+				.orElseThrow(() -> new MontadoraNotFoundException("Montadora não encontrada com CNPJ: " + cnpj));
+		montadoraExistente.setRazaoSocial(montadora.getRazaoSocial());
+		montadoraExistente.setMarca(montadora.getMarca());
+		montadoraExistente.setContato(montadora.getContato());
+		montadoraExistente.setTelefone(montadora.getTelefone());
+		return montadoraRepository.save(montadoraExistente);
 	}
 
 	@Override
