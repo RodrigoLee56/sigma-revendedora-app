@@ -61,8 +61,7 @@ public class VeiculoServiceImpl implements VeiculoService {
 
 	@Override
 	public Page<Veiculo> listarPorAnoFabricacaoPaginado(Integer anoFabricacao, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return veiculoRepository.findByAnoFabricacao(anoFabricacao, pageable);
 	}
 
 	@Override
