@@ -12,11 +12,11 @@ import com.rede.sigma.domain.Pedido.Pedido;
 public interface PedidoService {
 	Pedido salvar(Pedido pedido);
 
-	Pedido atualizar(Integer numero, Pedido pedido);
+	Pedido atualizar(Long numero, Pedido pedido);
 
-	void deletar(Integer numero);
+	void deletar(Long numero);
 
-	Pedido buscarPorNumero(Integer numero);
+	Pedido buscarPorNumero(Long numero);
 
 	List<Pedido> listarTodos();
 
