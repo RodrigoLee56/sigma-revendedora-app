@@ -51,8 +51,7 @@ public class PedidoServiceImpl implements PedidoService {
 
 	@Override
 	public List<Pedido> listarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		return pedidoRepository.findAll();
 	}
 
 	@Override
