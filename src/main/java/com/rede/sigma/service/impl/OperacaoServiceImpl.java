@@ -66,8 +66,7 @@ public class OperacaoServiceImpl implements OperacaoService {
 
 	@Override
 	public List<Operacao> listarPorVendedor(Integer codigo) {
-		// TODO Auto-generated method stub
-		return null;
+		return operacaoRepository.findByVendedorCodigo(codigo);
 	}
 
 	@Override
