@@ -50,8 +50,7 @@ public class OperacaoServiceImpl implements OperacaoService {
 
 	@Override
 	public List<Operacao> listarTodas() {
-		// TODO Auto-generated method stub
-		return null;
+		return operacaoRepository.findAll();
 	}
 
 	@Override
