@@ -1,5 +1,6 @@
 package com.rede.sigma.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -21,4 +22,12 @@ public interface OperacaoService {
 	List<Operacao> listarTodas();
 
 	Page<Operacao> listarPaginado(Pageable pageable);
+
+	List<Operacao> listarPorCliente(String cpf);
+
+	List<Operacao> listarPorVendedor(Integer codigo);
+
+	List<Operacao> listarPorIntervaloDeDatas(LocalDate startDate, LocalDate endDate);
+
+	List<Operacao> listarPorValorMaiorQue(Double valor);
 }
