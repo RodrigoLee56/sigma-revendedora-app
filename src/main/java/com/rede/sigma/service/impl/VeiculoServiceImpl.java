@@ -46,8 +46,7 @@ public class VeiculoServiceImpl implements VeiculoService {
 
 	@Override
 	public Page<Veiculo> listarPaginado(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return veiculoRepository.findAll(pageable);
 	}
 
 	@Override
