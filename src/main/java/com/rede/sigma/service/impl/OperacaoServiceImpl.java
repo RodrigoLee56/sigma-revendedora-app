@@ -39,8 +39,7 @@ public class OperacaoServiceImpl implements OperacaoService {
 
 	@Override
 	public void deletar(Long numero) {
-		// TODO Auto-generated method stub
-
+		operacaoRepository.deleteById(numero);
 	}
 
 	@Override
