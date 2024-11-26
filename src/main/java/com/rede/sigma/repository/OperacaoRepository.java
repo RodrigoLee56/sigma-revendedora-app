@@ -25,4 +25,8 @@ public interface OperacaoRepository extends JpaRepository<Operacao, Long> {
 	// Buscar operações com valor total maior que um valor específico
 	@Query("SELECT o FROM Operacao o WHERE o.valorTotal > :valor")
 	List<Operacao> findByValorTotalGreaterThan(@Param("valor") Double valor);
+
+	// Buscar operações com valor total menor que um valor específico
+	@Query("SELECT o FROM Operacao o WHERE o.valorTotal < :valor")
+	List<Operacao> findByValorTotalLessThan(@Param("valor") Double valor);
 }
