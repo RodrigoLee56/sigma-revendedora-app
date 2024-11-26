@@ -55,7 +55,6 @@ public class OperacaoServiceImpl implements OperacaoService {
 
 	@Override
 	public Page<Operacao> listarPaginado(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return operacaoRepository.findAll(pageable);
 	}
 }
