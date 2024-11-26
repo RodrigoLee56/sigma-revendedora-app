@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.rede.sigma.domain.Cliente.Cliente;
+import com.rede.sigma.exeption.ClienteNotFoundException;
 import com.rede.sigma.exeption.InvalidCpfException;
 import com.rede.sigma.repository.ClienteRepository;
 import com.rede.sigma.service.ClienteService;
@@ -34,7 +35,7 @@ public class ClienteServiceImpl implements ClienteService {
 			throw new InvalidCpfException("CPF inválido!");
 		}
 		Cliente clienteExistente = clienteRepository.findById(cpf)
-				.orElseThrow(() -> new RuntimeException("Cliente não encontrado com CPF: " + cpf));
+				.orElseThrow(() -> new ClienteNotFoundException("Cliente não encontrado com CPF: " + cpf));
 		clienteExistente.setNome(cliente.getNome());
 		clienteExistente.setEndereco(cliente.getEndereco());
 		clienteExistente.setTelefone(cliente.getTelefone());
@@ -51,7 +52,7 @@ public class ClienteServiceImpl implements ClienteService {
 	@Override
 	public Cliente buscarPorCpf(String cpf) {
 		return clienteRepository.findById(cpf)
-				.orElseThrow(() -> new RuntimeException("Cliente não encontrado com CPF: " + cpf));
+				.orElseThrow(() -> new ClienteNotFoundException("Cliente não encontrado com CPF: " + cpf));
 	}
 
 	@Override
