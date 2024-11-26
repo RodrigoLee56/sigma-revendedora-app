@@ -9,7 +9,12 @@ import com.rede.sigma.service.ClienteService;
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
-	
+
 	@Autowired
 	private ClienteService clienteService;
+
+	@PostMapping
+	public Cliente criarCliente(@RequestBody Cliente cliente) {
+		return clienteService.salvar(cliente);
+	}
 }
