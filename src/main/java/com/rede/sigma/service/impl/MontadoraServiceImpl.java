@@ -30,8 +30,7 @@ public class MontadoraServiceImpl implements MontadoraService {
 
 	@Override
 	public void deletar(String cnpj) {
-		// TODO Auto-generated method stub
-
+		montadoraRepository.deleteById(cnpj);
 	}
 
 	@Override
