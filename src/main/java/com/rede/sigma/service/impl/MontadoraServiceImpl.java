@@ -41,13 +41,12 @@ public class MontadoraServiceImpl implements MontadoraService {
 
 	@Override
 	public List<Montadora> listarTodas() {
-		 return montadoraRepository.findAll();
+		return montadoraRepository.findAll();
 	}
 
 	@Override
 	public Page<Montadora> listarPaginado(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return montadoraRepository.findAll(pageable);
 	}
 
 }
