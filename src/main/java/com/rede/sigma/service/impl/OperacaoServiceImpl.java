@@ -76,7 +76,6 @@ public class OperacaoServiceImpl implements OperacaoService {
 
 	@Override
 	public List<Operacao> listarPorValorMaiorQue(Double valor) {
-		// TODO Auto-generated method stub
-		return null;
+		return operacaoRepository.findByValorTotalGreaterThan(valor);
 	}
 }
