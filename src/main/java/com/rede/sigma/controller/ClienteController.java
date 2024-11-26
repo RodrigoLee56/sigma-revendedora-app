@@ -1,6 +1,7 @@
 package com.rede.sigma.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -26,5 +27,10 @@ public class ClienteController {
 	@PutMapping("/{cpf}")
 	public Cliente atualizarCliente(@PathVariable String cpf, @RequestBody Cliente cliente) {
 		return clienteService.atualizar(cpf, cliente);
+	}
+
+	@GetMapping("/{cpf}")
+	public Cliente buscarClientePorCpf(@PathVariable String cpf) {
+		return clienteService.buscarPorCpf(cpf);
 	}
 }
