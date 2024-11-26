@@ -56,8 +56,7 @@ public class PedidoServiceImpl implements PedidoService {
 
 	@Override
 	public Page<Pedido> listarPaginado(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return pedidoRepository.findAll(pageable);
 	}
 
 }
