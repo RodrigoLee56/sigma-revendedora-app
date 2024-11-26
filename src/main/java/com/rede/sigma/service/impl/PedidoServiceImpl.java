@@ -46,8 +46,8 @@ public class PedidoServiceImpl implements PedidoService {
 
 	@Override
 	public Pedido buscarPorNumero(Long numero) {
-		// TODO Auto-generated method stub
-		return null;
+		return pedidoRepository.findById(numero)
+				.orElseThrow(() -> new PedidoNotFoundException("Pedido não encontrado com número: " + numero));
 	}
 
 	@Override
