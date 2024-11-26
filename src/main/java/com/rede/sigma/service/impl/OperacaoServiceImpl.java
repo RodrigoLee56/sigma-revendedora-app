@@ -71,8 +71,7 @@ public class OperacaoServiceImpl implements OperacaoService {
 
 	@Override
 	public List<Operacao> listarPorIntervaloDeDatas(LocalDate startDate, LocalDate endDate) {
-		// TODO Auto-generated method stub
-		return null;
+		return operacaoRepository.findByDataBetween(startDate, endDate);
 	}
 
 	@Override
