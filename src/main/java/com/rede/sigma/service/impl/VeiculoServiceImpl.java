@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.rede.sigma.domain.Veiculo.Veiculo;
+import com.rede.sigma.exeption.VeiculoNotFoundException;
 import com.rede.sigma.repository.VeiculoRepository;
 import com.rede.sigma.service.VeiculoService;
 
@@ -24,8 +25,15 @@ public class VeiculoServiceImpl implements VeiculoService {
 
 	@Override
 	public Veiculo atualizar(String numeroChassi, Veiculo veiculo) {
-		// TODO Auto-generated method stub
-		return null;
+		Veiculo veiculoExistente = veiculoRepository.findById(numeroChassi).orElseThrow(
+				() -> new VeiculoNotFoundException("Veículo não encontrado com número de chassi: " + numeroChassi));
+		veiculoExistente.setMarca(veiculo.getMarca());
+		veiculoExistente.setModelo(veiculo.getModelo());
+		veiculoExistente.setAnoFabricacao(veiculo.getAnoFabricacao());
+		veiculoExistente.setAnoModelo(veiculo.getAnoModelo());
+		veiculoExistente.setCor(veiculo.getCor());
+		veiculoExistente.setValor(veiculo.getValor());
+		return veiculoRepository.save(veiculoExistente);
 	}
 
 	@Override
