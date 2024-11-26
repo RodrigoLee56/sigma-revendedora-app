@@ -30,4 +30,6 @@ public interface OperacaoService {
 	List<Operacao> listarPorIntervaloDeDatas(LocalDate startDate, LocalDate endDate);
 
 	List<Operacao> listarPorValorMaiorQue(Double valor);
+
+	List<Operacao> listarPorValorMenorQue(Double valor);
 }
