@@ -19,8 +19,7 @@ public class PedidoServiceImpl implements PedidoService {
 	
 	@Override
 	public Pedido salvar(Pedido pedido) {
-		// TODO Auto-generated method stub
-		return null;
+		return pedidoRepository.save(pedido);
 	}
 
 	@Override
