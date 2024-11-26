@@ -40,8 +40,7 @@ public class PedidoServiceImpl implements PedidoService {
 
 	@Override
 	public void deletar(Long numero) {
-		// TODO Auto-generated method stub
-
+		pedidoRepository.deleteById(numero);
 	}
 
 	@Override
