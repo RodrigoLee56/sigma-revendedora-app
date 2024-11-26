@@ -66,7 +66,6 @@ public class VeiculoServiceImpl implements VeiculoService {
 
 	@Override
 	public Page<Veiculo> listarPorCorPaginado(String cor, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return veiculoRepository.findByCor(cor, pageable);
 	}
 }
