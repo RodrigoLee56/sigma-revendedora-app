@@ -8,14 +8,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.rede.sigma.domain.Operacao.Operacao;
+import com.rede.sigma.exeption.OperacaoNotFoundException;
 import com.rede.sigma.repository.OperacaoRepository;
 import com.rede.sigma.service.OperacaoService;
 
 @Service
 public class OperacaoServiceImpl implements OperacaoService {
-	
+
 	@Autowired
-    private OperacaoRepository operacaoRepository;
+	private OperacaoRepository operacaoRepository;
 
 	@Override
 	public Operacao salvar(Operacao operacao) {
@@ -24,14 +25,22 @@ public class OperacaoServiceImpl implements OperacaoService {
 
 	@Override
 	public Operacao atualizar(Long numero, Operacao operacao) {
-		// TODO Auto-generated method stub
-		return null;
+		Operacao operacaoExistente = operacaoRepository.findById(numero)
+				.orElseThrow(() -> new OperacaoNotFoundException("Operação não encontrada com número: " + numero));
+		operacaoExistente.setCliente(operacao.getCliente());
+		operacaoExistente.setVendedor(operacao.getVendedor());
+		operacaoExistente.setVeiculo(operacao.getVeiculo());
+		operacaoExistente.setData(operacao.getData());
+		operacaoExistente.setValorEntrada(operacao.getValorEntrada());
+		operacaoExistente.setValorFinanciado(operacao.getValorFinanciado());
+		operacaoExistente.setValorTotal(operacao.getValorTotal());
+		return operacaoRepository.save(operacaoExistente);
 	}
 
 	@Override
 	public void deletar(Long numero) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
