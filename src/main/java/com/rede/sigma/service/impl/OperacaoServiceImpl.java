@@ -1,5 +1,6 @@
 package com.rede.sigma.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,29 @@ public class OperacaoServiceImpl implements OperacaoService {
 	@Override
 	public Page<Operacao> listarPaginado(Pageable pageable) {
 		return operacaoRepository.findAll(pageable);
+	}
+
+	@Override
+	public List<Operacao> listarPorCliente(String cpf) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Operacao> listarPorVendedor(Integer codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Operacao> listarPorIntervaloDeDatas(LocalDate startDate, LocalDate endDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Operacao> listarPorValorMaiorQue(Double valor) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
