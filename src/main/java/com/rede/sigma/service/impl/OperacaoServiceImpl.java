@@ -61,8 +61,7 @@ public class OperacaoServiceImpl implements OperacaoService {
 
 	@Override
 	public List<Operacao> listarPorCliente(String cpf) {
-		// TODO Auto-generated method stub
-		return null;
+		return operacaoRepository.findByClienteCpf(cpf);
 	}
 
 	@Override
