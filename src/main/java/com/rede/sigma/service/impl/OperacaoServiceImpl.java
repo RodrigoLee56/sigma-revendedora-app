@@ -44,8 +44,8 @@ public class OperacaoServiceImpl implements OperacaoService {
 
 	@Override
 	public Operacao buscarPorNumero(Long numero) {
-		// TODO Auto-generated method stub
-		return null;
+		return operacaoRepository.findById(numero)
+				.orElseThrow(() -> new OperacaoNotFoundException("Operação não encontrada com número: " + numero));
 	}
 
 	@Override
