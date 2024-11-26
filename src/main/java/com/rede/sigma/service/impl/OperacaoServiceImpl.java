@@ -78,4 +78,9 @@ public class OperacaoServiceImpl implements OperacaoService {
 	public List<Operacao> listarPorValorMaiorQue(Double valor) {
 		return operacaoRepository.findByValorTotalGreaterThan(valor);
 	}
+
+	@Override
+	public List<Operacao> listarPorValorMenorQue(Double valor) {
+		return operacaoRepository.findByValorTotalLessThan(valor);
+	}
 }
