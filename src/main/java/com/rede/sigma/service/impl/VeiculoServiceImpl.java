@@ -51,14 +51,12 @@ public class VeiculoServiceImpl implements VeiculoService {
 
 	@Override
 	public List<Veiculo> listarPorMarca(String marca) {
-		// TODO Auto-generated method stub
-		return null;
+		return veiculoRepository.findByMarca(marca);
 	}
 
 	@Override
 	public Page<Veiculo> listarPorMarcaPaginado(String marca, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return veiculoRepository.findByMarca(marca, pageable);
 	}
 
 	@Override
