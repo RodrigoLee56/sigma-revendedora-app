@@ -42,12 +42,15 @@ public class ClienteController {
 	public List<Cliente> listarTodosClientes() {
 		return clienteService.listarTodos();
 	}
-	
+
 	@GetMapping("/paginado")
-    public Page<Cliente> listarClientesPaginados(Pageable pageable) {
-        return clienteService.listarPaginado(pageable);
-    }
-	
-	
+	public Page<Cliente> listarClientesPaginados(Pageable pageable) {
+		return clienteService.listarPaginado(pageable);
+	}
+
+	@GetMapping("/ordenados")
+	public List<Cliente> listarClientesOrdenados() {
+		return clienteService.listarOrdenadosPorNome();
+	}
 
 }
