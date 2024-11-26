@@ -43,8 +43,8 @@ public class VeiculoServiceImpl implements VeiculoService {
 
 	@Override
 	public Veiculo buscarPorNumeroChassi(String numeroChassi) {
-		// TODO Auto-generated method stub
-		return null;
+		return veiculoRepository.findById(numeroChassi).orElseThrow(
+				() -> new VeiculoNotFoundException("Veículo não encontrado com número de chassi: " + numeroChassi));
 	}
 
 	@Override
