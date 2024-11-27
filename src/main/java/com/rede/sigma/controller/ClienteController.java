@@ -3,6 +3,8 @@ package com.rede.sigma.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -64,5 +66,15 @@ public class ClienteController {
 		Cliente cliente = clienteService.buscarPorCpf(cpf);
 		model.addAttribute("cliente", cliente);
 		return "ver-cliente";
+	}
+
+	@GetMapping("/paginado")
+	public String listarClientesPaginados(Pageable pageable, Model model) {
+		Page<Cliente> clientesPaginados = clienteService.listarPaginado(pageable);
+		model.addAttribute("clientes", clientesPaginados.getContent());
+		model.addAttribute("paginaAtual", clientesPaginados.getNumber());
+		model.addAttribute("totalPaginas", clientesPaginados.getTotalPages());
+		model.addAttribute("totalElementos", clientesPaginados.getTotalElements());
+		return "listar-clientes-paginados";
 	}
 }
