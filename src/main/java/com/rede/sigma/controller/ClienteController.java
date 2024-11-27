@@ -51,11 +51,18 @@ public class ClienteController {
 		clienteService.deletar(cpf);
 		return "redirect:/clientes";
 	}
-	
+
 	@GetMapping
-    public String listarClientes(Model model) {
-        List<Cliente> clientes = clienteService.listarTodos();
-        model.addAttribute("clientes", clientes);
-        return "listar-clientes";
-    }
+	public String listarClientes(Model model) {
+		List<Cliente> clientes = clienteService.listarTodos();
+		model.addAttribute("clientes", clientes);
+		return "listar-clientes";
+	}
+
+	@GetMapping("/{cpf}")
+	public String verCliente(@PathVariable String cpf, Model model) {
+		Cliente cliente = clienteService.buscarPorCpf(cpf);
+		model.addAttribute("cliente", cliente);
+		return "ver-cliente";
+	}
 }
