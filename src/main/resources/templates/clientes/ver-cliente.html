@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalhes do Cliente</title>
+</head>
+<body>
+    <h1>Detalhes do Cliente</h1>
+    <p>CPF: <span th:text="${cliente.cpf}"></span></p>
+    <p>Nome: <span th:text="${cliente.nome}"></span></p>
+    <p>Telefone: <span th:text="${cliente.telefone}"></span></p>
+    <p>Renda: <span th:text="${cliente.renda}"></span></p>
+    <a href="/clientes">Voltar</a>
+</body>
+</html>
