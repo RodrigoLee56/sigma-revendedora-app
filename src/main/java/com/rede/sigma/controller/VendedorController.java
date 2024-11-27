@@ -32,5 +32,11 @@ public class VendedorController {
 		vendedorService.salvar(vendedor);
 		return "redirect:/vendedores";
 	}
+	
+	@PostMapping("/atualizar")
+    public String atualizarVendedor(@ModelAttribute Vendedor vendedor) {
+        vendedorService.atualizar(vendedor.getCodigo(), vendedor);
+        return "redirect:/vendedores";
+    }
 
 }
