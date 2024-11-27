@@ -38,4 +38,9 @@ public class ClienteController {
         return "form-cliente";
     }
 	
+	@PostMapping("/atualizar")
+    public String atualizarCliente(@ModelAttribute Cliente cliente) {
+        clienteService.atualizar(cliente.getCpf(), cliente);
+        return "redirect:/clientes";
+    }
 }
