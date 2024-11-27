@@ -5,18 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.rede.sigma.domain.Cliente.Cliente;
 import com.rede.sigma.service.ClienteService;
 
-@RestController
+@Controller
 @RequestMapping("/clientes")
 public class ClienteController {
 
@@ -32,14 +32,14 @@ public class ClienteController {
 	@GetMapping("/novo")
 	public String novoCliente(Model model) {
 		model.addAttribute("cliente", new Cliente());
-		return "form-cliente";
+		return "clientes/form-cliente";
 	}
 
 	@GetMapping("/editar/{cpf}")
 	public String editarCliente(@PathVariable String cpf, Model model) {
 		Cliente cliente = clienteService.buscarPorCpf(cpf);
 		model.addAttribute("cliente", cliente);
-		return "form-cliente";
+		return "clientes/form-cliente";
 	}
 
 	@PostMapping("/atualizar")
@@ -58,14 +58,14 @@ public class ClienteController {
 	public String listarClientes(Model model) {
 		List<Cliente> clientes = clienteService.listarTodos();
 		model.addAttribute("clientes", clientes);
-		return "listar-clientes";
+		return "clientes/listar-clientes";
 	}
 
 	@GetMapping("/{cpf}")
 	public String verCliente(@PathVariable String cpf, Model model) {
 		Cliente cliente = clienteService.buscarPorCpf(cpf);
 		model.addAttribute("cliente", cliente);
-		return "ver-cliente";
+		return "clientes/ver-cliente";
 	}
 
 	@GetMapping("/paginado")
@@ -75,13 +75,13 @@ public class ClienteController {
 		model.addAttribute("paginaAtual", clientesPaginados.getNumber());
 		model.addAttribute("totalPaginas", clientesPaginados.getTotalPages());
 		model.addAttribute("totalElementos", clientesPaginados.getTotalElements());
-		return "listar-clientes-paginados";
+		return "clientes/listar-clientes-paginados";
 	}
 
 	@GetMapping("/ordenados")
 	public String listarClientesOrdenados(Model model) {
 		List<Cliente> clientesOrdenados = clienteService.listarOrdenadosPorNome();
 		model.addAttribute("clientes", clientesOrdenados);
-		return "listar-clientes-ordenados"; 
+		return "clientes/listar-clientes-ordenados"; 
 	}
 }
