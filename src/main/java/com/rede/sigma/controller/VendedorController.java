@@ -40,6 +40,13 @@ public class VendedorController {
 		return "redirect:/vendedores";
 	}
 
+	@GetMapping("/editar/{codigo}")
+	public String editarVendedor(@PathVariable Integer codigo, Model model) {
+		Vendedor vendedor = vendedorService.buscarPorCodigo(codigo);
+		model.addAttribute("vendedor", vendedor);
+		return "vendedores/form-vendedor";
+	}
+
 	@PostMapping("/atualizar")
 	public String atualizarVendedor(@ModelAttribute Vendedor vendedor) {
 		vendedorService.atualizar(vendedor.getCodigo(), vendedor);
