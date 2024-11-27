@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,14 +25,22 @@ public class ClienteController {
 	@Autowired
 	private ClienteService clienteService;
 
-	@PostMapping
-	public Cliente criarCliente(@RequestBody Cliente cliente) {
-		return clienteService.salvar(cliente);
-	}
+	@PostMapping("/salvar")
+    public String salvarCliente(@ModelAttribute Cliente cliente) {
+        clienteService.salvar(cliente);
+        return "redirect:/clientes";
+    }
 
 	@PutMapping("/{cpf}")
 	public Cliente atualizarCliente(@PathVariable String cpf, @RequestBody Cliente cliente) {
 		return clienteService.atualizar(cpf, cliente);
+	}
+
+	@DeleteMapping("/{cpf}")
+	public Cliente deletarClientePorCpf(@PathVariable String cpf) {
+		Cliente cliente = clienteService.buscarPorCpf(cpf);
+		clienteService.deletar(cpf);
+		return cliente;
 	}
 
 	@GetMapping("/{cpf}")
