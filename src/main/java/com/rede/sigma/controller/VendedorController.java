@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,11 +33,17 @@ public class VendedorController {
 		vendedorService.salvar(vendedor);
 		return "redirect:/vendedores";
 	}
-	
+
 	@PostMapping("/atualizar")
-    public String atualizarVendedor(@ModelAttribute Vendedor vendedor) {
-        vendedorService.atualizar(vendedor.getCodigo(), vendedor);
-        return "redirect:/vendedores";
-    }
+	public String atualizarVendedor(@ModelAttribute Vendedor vendedor) {
+		vendedorService.atualizar(vendedor.getCodigo(), vendedor);
+		return "redirect:/vendedores";
+	}
+
+	@GetMapping("/deletar/{codigo}")
+	public String deletarVendedor(@PathVariable Integer codigo) {
+		vendedorService.deletar(codigo);
+		return "redirect:/vendedores";
+	}
 
 }
