@@ -20,27 +20,33 @@ public class ClienteController {
 	private ClienteService clienteService;
 
 	@PostMapping("/salvar")
-    public String salvarCliente(@ModelAttribute Cliente cliente) {
-        clienteService.salvar(cliente);
-        return "redirect:/clientes";
-    }
+	public String salvarCliente(@ModelAttribute Cliente cliente) {
+		clienteService.salvar(cliente);
+		return "redirect:/clientes";
+	}
 
 	@GetMapping("/novo")
-    public String novoCliente(Model model) {
-        model.addAttribute("cliente", new Cliente());
-        return "form-cliente";
-    }
-	
+	public String novoCliente(Model model) {
+		model.addAttribute("cliente", new Cliente());
+		return "form-cliente";
+	}
+
 	@GetMapping("/editar/{cpf}")
-    public String editarCliente(@PathVariable String cpf, Model model) {
-        Cliente cliente = clienteService.buscarPorCpf(cpf);
-        model.addAttribute("cliente", cliente);
-        return "form-cliente";
-    }
-	
+	public String editarCliente(@PathVariable String cpf, Model model) {
+		Cliente cliente = clienteService.buscarPorCpf(cpf);
+		model.addAttribute("cliente", cliente);
+		return "form-cliente";
+	}
+
 	@PostMapping("/atualizar")
-    public String atualizarCliente(@ModelAttribute Cliente cliente) {
-        clienteService.atualizar(cliente.getCpf(), cliente);
-        return "redirect:/clientes";
-    }
+	public String atualizarCliente(@ModelAttribute Cliente cliente) {
+		clienteService.atualizar(cliente.getCpf(), cliente);
+		return "redirect:/clientes";
+	}
+
+	@GetMapping("/deletar/{cpf}")
+	public String deletarCliente(@PathVariable String cpf) {
+		clienteService.deletar(cpf);
+		return "redirect:/clientes";
+	}
 }
