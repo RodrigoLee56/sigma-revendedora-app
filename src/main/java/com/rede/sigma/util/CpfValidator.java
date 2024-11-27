@@ -8,9 +8,11 @@ public class CpfValidator {
 			return false;
 		}
 
-		int[] weights = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-		int primeiroDigito = calculaDigito(cpf.substring(0, 9), weights);
-		int segundoDigito = calculaDigito(cpf.substring(0, 9) + primeiroDigito, weights);
+		int[] pesoPrimeiroDigito = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+		int[] pesoSegundoDigito = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+		int primeiroDigito = calculaDigito(cpf.substring(0, 9), pesoPrimeiroDigito);
+		int segundoDigito = calculaDigito(cpf.substring(0, 9) + primeiroDigito, pesoSegundoDigito);
 
 		return cpf.equals(cpf.substring(0, 9) + primeiroDigito + segundoDigito);
 	}
