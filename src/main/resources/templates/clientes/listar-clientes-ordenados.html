@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listar Clientes Ordenados</title>
+</head>
+<body>
+    <h1>Lista de Clientes Ordenados por Nome</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>CPF</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.cpf}"></td>
+                <td th:text="${cliente.nome}"></td>
+                <td>
+                    <a th:href="@{/clientes/{cpf}(cpf=${cliente.cpf})}">Ver</a> |
+                    <a th:href="@{/clientes/editar/{cpf}(cpf=${cliente.cpf})}">Editar</a> |
+                    <a th:href="@{/clientes/deletar/{cpf}(cpf=${cliente.cpf})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/clientes">Voltar à lista</a>
+</body>
+</html>
