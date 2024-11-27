@@ -1,5 +1,7 @@
 package com.rede.sigma.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,4 +51,11 @@ public class ClienteController {
 		clienteService.deletar(cpf);
 		return "redirect:/clientes";
 	}
+	
+	@GetMapping
+    public String listarClientes(Model model) {
+        List<Cliente> clientes = clienteService.listarTodos();
+        model.addAttribute("clientes", clientes);
+        return "listar-clientes";
+    }
 }
