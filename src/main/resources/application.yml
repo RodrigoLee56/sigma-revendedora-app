@@ -14,3 +14,7 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+    
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
