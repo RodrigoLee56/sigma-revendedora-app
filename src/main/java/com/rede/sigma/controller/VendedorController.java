@@ -28,6 +28,12 @@ public class VendedorController {
 		return "vendedores/listar-vendedores";
 	}
 
+	@GetMapping("/novo")
+	public String novoVendedor(Model model) {
+		model.addAttribute("vendedor", new Vendedor());
+		return "vendedores/form-vendedor";
+	}
+
 	@PostMapping("/salvar")
 	public String salvarVendedor(@ModelAttribute Vendedor vendedor) {
 		vendedorService.salvar(vendedor);
