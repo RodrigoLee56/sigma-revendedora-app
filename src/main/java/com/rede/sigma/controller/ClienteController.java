@@ -77,4 +77,11 @@ public class ClienteController {
 		model.addAttribute("totalElementos", clientesPaginados.getTotalElements());
 		return "listar-clientes-paginados";
 	}
+
+	@GetMapping("/ordenados")
+	public String listarClientesOrdenados(Model model) {
+		List<Cliente> clientesOrdenados = clienteService.listarOrdenadosPorNome();
+		model.addAttribute("clientes", clientesOrdenados);
+		return "listar-clientes-ordenados"; 
+	}
 }
