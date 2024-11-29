@@ -63,4 +63,10 @@ public class PedidoController {
         model.addAttribute("montadoras", montadoraService.listarTodas());
         return "pedidos/form-pedido";
     }
+	
+	@PostMapping("/atualizar")
+    public String atualizarPedido(@ModelAttribute Pedido pedido) {
+        pedidoService.atualizar(pedido.getNumero(), pedido);
+        return "redirect:/pedidos";
+    }
 }
