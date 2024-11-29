@@ -23,4 +23,10 @@ public class MontadoraController {
 		model.addAttribute("montadoras", montadoras);
 		return "montadoras/listar-montadoras";
 	}
+	
+	@GetMapping("/novo")
+    public String novaMontadora(Model model) {
+        model.addAttribute("montadora", new Montadora());
+        return "montadoras/form-montadora";
+    }
 }
