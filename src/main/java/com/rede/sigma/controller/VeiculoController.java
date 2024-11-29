@@ -24,4 +24,10 @@ public class VeiculoController {
 		model.addAttribute("veiculos", veiculos);
 		return "veiculos/listar-veiculos";
 	}
+	
+	@GetMapping("/novo")
+    public String novoVeiculo(Model model) {
+        model.addAttribute("veiculo", new Veiculo());
+        return "veiculos/form-veiculo";
+    }
 }
