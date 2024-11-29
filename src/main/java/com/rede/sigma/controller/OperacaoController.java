@@ -42,38 +42,44 @@ public class OperacaoController {
 		model.addAttribute("operacoes", operacoes);
 		return "operacoes/listar-operacoes";
 	}
-	
+
 	@GetMapping("/novo")
-    public String novaOperacao(Model model) {
-        model.addAttribute("operacao", new Operacao());
-        model.addAttribute("pedidos", pedidoService.listarTodos());
-        model.addAttribute("clientes", clienteService.listarTodos());
-        model.addAttribute("vendedores", vendedorService.listarTodos());
-        model.addAttribute("montadoras", montadoraService.listarTodas());
-        return "operacoes/form-operacao";
-    }
-	
+	public String novaOperacao(Model model) {
+		model.addAttribute("operacao", new Operacao());
+		model.addAttribute("pedidos", pedidoService.listarTodos());
+		model.addAttribute("clientes", clienteService.listarTodos());
+		model.addAttribute("vendedores", vendedorService.listarTodos());
+		model.addAttribute("montadoras", montadoraService.listarTodas());
+		return "operacoes/form-operacao";
+	}
+
 	@PostMapping("/salvar")
-    public String salvarOperacao(@ModelAttribute Operacao operacao) {
-        operacaoService.salvar(operacao);
-        return "redirect:/operacoes";
-    }
+	public String salvarOperacao(@ModelAttribute Operacao operacao) {
+		operacaoService.salvar(operacao);
+		return "redirect:/operacoes";
+	}
 
 	@GetMapping("/editar/{numero}")
-    public String editarOperacao(@PathVariable Long numero, Model model) {
-        Operacao operacao = operacaoService.buscarPorNumero(numero);
-        model.addAttribute("operacao", operacao);
-        model.addAttribute("pedidos", pedidoService.listarTodos());
-        model.addAttribute("clientes", clienteService.listarTodos());
-        model.addAttribute("vendedores", vendedorService.listarTodos());
-        model.addAttribute("montadoras", montadoraService.listarTodas());
-        return "operacoes/form-operacao";
-    }
-	
-	
-	
-	
-	
-	
-	
+	public String editarOperacao(@PathVariable Long numero, Model model) {
+		Operacao operacao = operacaoService.buscarPorNumero(numero);
+		model.addAttribute("operacao", operacao);
+		model.addAttribute("pedidos", pedidoService.listarTodos());
+		model.addAttribute("clientes", clienteService.listarTodos());
+		model.addAttribute("vendedores", vendedorService.listarTodos());
+		model.addAttribute("montadoras", montadoraService.listarTodas());
+		return "operacoes/form-operacao";
+	}
+
+	@PostMapping("/atualizar")
+	public String atualizarOperacao(@ModelAttribute Operacao operacao) {
+		operacaoService.atualizar(operacao.getNumero(), operacao);
+		return "redirect:/operacoes";
+	}
+
+	@GetMapping("/deletar/{numero}")
+	public String deletarOperacao(@PathVariable Long numero) {
+		operacaoService.deletar(numero);
+		return "redirect:/operacoes";
+	}
+
 }
