@@ -39,4 +39,24 @@ public class OperacaoController {
 		model.addAttribute("operacoes", operacoes);
 		return "operacoes/listar-operacoes";
 	}
+	
+	@GetMapping("/novo")
+    public String novaOperacao(Model model) {
+        model.addAttribute("operacao", new Operacao());
+        model.addAttribute("pedidos", pedidoService.listarTodos());
+        model.addAttribute("clientes", clienteService.listarTodos());
+        model.addAttribute("vendedores", vendedorService.listarTodos());
+        model.addAttribute("montadoras", montadoraService.listarTodas());
+        return "operacoes/form-operacao";
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
