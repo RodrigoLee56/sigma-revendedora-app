@@ -26,38 +26,43 @@ public class MontadoraController {
 		model.addAttribute("montadoras", montadoras);
 		return "montadoras/listar-montadoras";
 	}
-	
+
 	@GetMapping("/novo")
-    public String novaMontadora(Model model) {
-        model.addAttribute("montadora", new Montadora());
-        return "montadoras/form-montadora";
-    }
-	
+	public String novaMontadora(Model model) {
+		model.addAttribute("montadora", new Montadora());
+		return "montadoras/form-montadora";
+	}
+
 	@PostMapping("/salvar")
-    public String salvarMontadora(@ModelAttribute Montadora montadora) {
-        montadoraService.salvar(montadora);
-        return "redirect:/montadoras";
-    }
-	
+	public String salvarMontadora(@ModelAttribute Montadora montadora) {
+		montadoraService.salvar(montadora);
+		return "redirect:/montadoras";
+	}
+
 	@GetMapping("/editar/{cnpj}")
-    public String editarMontadora(@PathVariable String cnpj, Model model) {
-        Montadora montadora = montadoraService.buscarPorCnpj(cnpj);
-        model.addAttribute("montadora", montadora);
-        return "montadoras/form-montadora";
-    }
-	
+	public String editarMontadora(@PathVariable String cnpj, Model model) {
+		Montadora montadora = montadoraService.buscarPorCnpj(cnpj);
+		model.addAttribute("montadora", montadora);
+		return "montadoras/form-montadora";
+	}
+
 	@PostMapping("/atualizar")
-    public String atualizarMontadora(@ModelAttribute Montadora montadora) {
-        montadoraService.atualizar(montadora.getCnpj(), montadora);
-        return "redirect:/montadoras";
-    }
-	
+	public String atualizarMontadora(@ModelAttribute Montadora montadora) {
+		montadoraService.atualizar(montadora.getCnpj(), montadora);
+		return "redirect:/montadoras";
+	}
+
 	@GetMapping("/deletar/{cnpj}")
-    public String deletarMontadora(@PathVariable String cnpj) {
-        montadoraService.deletar(cnpj);
-        return "redirect:/montadoras";
-    }
-	
-	
-	
+	public String deletarMontadora(@PathVariable String cnpj) {
+		montadoraService.deletar(cnpj);
+		return "redirect:/montadoras";
+	}
+
+	@GetMapping("/{cnpj}")
+	public String verMontadora(@PathVariable String cnpj, Model model) {
+		Montadora montadora = montadoraService.buscarPorCnpj(cnpj);
+		model.addAttribute("montadora", montadora);
+		return "montadoras/ver-montadora";
+	}
+
 }
