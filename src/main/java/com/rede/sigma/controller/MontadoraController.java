@@ -52,7 +52,11 @@ public class MontadoraController {
         return "redirect:/montadoras";
     }
 	
-	
+	@GetMapping("/deletar/{cnpj}")
+    public String deletarMontadora(@PathVariable String cnpj) {
+        montadoraService.deletar(cnpj);
+        return "redirect:/montadoras";
+    }
 	
 	
 	
