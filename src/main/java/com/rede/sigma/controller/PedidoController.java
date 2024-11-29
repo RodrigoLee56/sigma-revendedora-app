@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -51,4 +52,15 @@ public class PedidoController {
 	public String salvarPedido(@ModelAttribute Pedido pedido) {
 		pedidoService.salvar(pedido);
 		return "redirect:/pedidos";
+	}
+	
+	@GetMapping("/editar/{numero}")
+    public String editarPedido(@PathVariable Long numero, Model model) {
+        Pedido pedido = pedidoService.buscarPorNumero(numero);
+        model.addAttribute("pedido", pedido);
+        model.addAttribute("clientes", clienteService.listarTodos());
+        model.addAttribute("vendedores", vendedorService.listarTodos());
+        model.addAttribute("montadoras", montadoraService.listarTodas());
+        return "pedidos/form-pedido";
+    }
 }
