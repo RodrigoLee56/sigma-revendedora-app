@@ -52,4 +52,10 @@ public class VeiculoController {
         veiculoService.atualizar(veiculo.getNumeroChassi(), veiculo);
         return "redirect:/veiculos";
     }
+	
+	@GetMapping("/deletar/{numeroChassi}")
+    public String deletarVeiculo(@PathVariable String numeroChassi) {
+        veiculoService.deletar(numeroChassi);
+        return "redirect:/veiculos";
+    }
 }
