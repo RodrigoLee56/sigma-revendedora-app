@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -58,7 +59,16 @@ public class OperacaoController {
         return "redirect:/operacoes";
     }
 
-	
+	@GetMapping("/editar/{numero}")
+    public String editarOperacao(@PathVariable Long numero, Model model) {
+        Operacao operacao = operacaoService.buscarPorNumero(numero);
+        model.addAttribute("operacao", operacao);
+        model.addAttribute("pedidos", pedidoService.listarTodos());
+        model.addAttribute("clientes", clienteService.listarTodos());
+        model.addAttribute("vendedores", vendedorService.listarTodos());
+        model.addAttribute("montadoras", montadoraService.listarTodas());
+        return "operacoes/form-operacao";
+    }
 	
 	
 	
