@@ -46,4 +46,10 @@ public class VeiculoController {
         model.addAttribute("veiculo", veiculo);
         return "veiculos/form-veiculo";
     }
+	
+	@PostMapping("/atualizar")
+    public String atualizarVeiculo(@ModelAttribute Veiculo veiculo) {
+        veiculoService.atualizar(veiculo.getNumeroChassi(), veiculo);
+        return "redirect:/veiculos";
+    }
 }
