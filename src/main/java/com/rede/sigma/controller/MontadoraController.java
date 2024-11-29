@@ -45,4 +45,15 @@ public class MontadoraController {
         model.addAttribute("montadora", montadora);
         return "montadoras/form-montadora";
     }
+	
+	@PostMapping("/atualizar")
+    public String atualizarMontadora(@ModelAttribute Montadora montadora) {
+        montadoraService.atualizar(montadora.getCnpj(), montadora);
+        return "redirect:/montadoras";
+    }
+	
+	
+	
+	
+	
 }
