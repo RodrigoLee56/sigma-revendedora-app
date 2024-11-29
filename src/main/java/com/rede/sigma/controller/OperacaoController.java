@@ -82,4 +82,11 @@ public class OperacaoController {
 		return "redirect:/operacoes";
 	}
 
+	@GetMapping("/{numero}")
+	public String verOperacao(@PathVariable Long numero, Model model) {
+		Operacao operacao = operacaoService.buscarPorNumero(numero);
+		model.addAttribute("operacao", operacao);
+		return "operacoes/ver-operacao";
+	}
+
 }
