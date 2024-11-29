@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -37,5 +38,12 @@ public class VeiculoController {
     public String salvarVeiculo(@ModelAttribute Veiculo veiculo) {
         veiculoService.salvar(veiculo);
         return "redirect:/veiculos";
+    }
+	
+	@GetMapping("/editar/{numeroChassi}")
+    public String editarVeiculo(@PathVariable String numeroChassi, Model model) {
+        Veiculo veiculo = veiculoService.buscarPorNumeroChassi(numeroChassi);
+        model.addAttribute("veiculo", veiculo);
+        return "veiculos/form-veiculo";
     }
 }
