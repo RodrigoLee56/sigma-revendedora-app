@@ -53,20 +53,27 @@ public class PedidoController {
 		pedidoService.salvar(pedido);
 		return "redirect:/pedidos";
 	}
-	
+
 	@GetMapping("/editar/{numero}")
-    public String editarPedido(@PathVariable Long numero, Model model) {
-        Pedido pedido = pedidoService.buscarPorNumero(numero);
-        model.addAttribute("pedido", pedido);
-        model.addAttribute("clientes", clienteService.listarTodos());
-        model.addAttribute("vendedores", vendedorService.listarTodos());
-        model.addAttribute("montadoras", montadoraService.listarTodas());
-        return "pedidos/form-pedido";
-    }
-	
+	public String editarPedido(@PathVariable Long numero, Model model) {
+		Pedido pedido = pedidoService.buscarPorNumero(numero);
+		model.addAttribute("pedido", pedido);
+		model.addAttribute("clientes", clienteService.listarTodos());
+		model.addAttribute("vendedores", vendedorService.listarTodos());
+		model.addAttribute("montadoras", montadoraService.listarTodas());
+		return "pedidos/form-pedido";
+	}
+
 	@PostMapping("/atualizar")
-    public String atualizarPedido(@ModelAttribute Pedido pedido) {
-        pedidoService.atualizar(pedido.getNumero(), pedido);
-        return "redirect:/pedidos";
-    }
+	public String atualizarPedido(@ModelAttribute Pedido pedido) {
+		pedidoService.atualizar(pedido.getNumero(), pedido);
+		return "redirect:/pedidos";
+	}
+
+	@GetMapping("/deletar/{numero}")
+	public String deletarPedido(@PathVariable Long numero) {
+		pedidoService.deletar(numero);
+		return "redirect:/pedidos";
+	}
+
 }
