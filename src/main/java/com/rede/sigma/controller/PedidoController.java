@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rede.sigma.domain.Pedido.Pedido;
@@ -28,20 +30,25 @@ public class PedidoController {
 
 	@Autowired
 	private MontadoraService montadoraService;
-	
+
 	@GetMapping
-    public String listarPedidos(Model model) {
-        List<Pedido> pedidos = pedidoService.listarTodos();
-        model.addAttribute("pedidos", pedidos);
-        return "pedidos/listar-pedidos";
-    }
-	
+	public String listarPedidos(Model model) {
+		List<Pedido> pedidos = pedidoService.listarTodos();
+		model.addAttribute("pedidos", pedidos);
+		return "pedidos/listar-pedidos";
+	}
+
 	@GetMapping("/novo")
-    public String novoPedido(Model model) {
-        model.addAttribute("pedido", new Pedido());
-        model.addAttribute("clientes", clienteService.listarTodos());
-        model.addAttribute("vendedores", vendedorService.listarTodos());
-        model.addAttribute("montadoras", montadoraService.listarTodas());
-        return "pedidos/form-pedido";
-    }
+	public String novoPedido(Model model) {
+		model.addAttribute("pedido", new Pedido());
+		model.addAttribute("clientes", clienteService.listarTodos());
+		model.addAttribute("vendedores", vendedorService.listarTodos());
+		model.addAttribute("montadoras", montadoraService.listarTodas());
+		return "pedidos/form-pedido";
+	}
+
+	@PostMapping("/salvar")
+	public String salvarPedido(@ModelAttribute Pedido pedido) {
+		pedidoService.salvar(pedido);
+		return "redirect:/pedidos";
 }
