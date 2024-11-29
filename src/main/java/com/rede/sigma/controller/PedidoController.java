@@ -76,4 +76,10 @@ public class PedidoController {
 		return "redirect:/pedidos";
 	}
 
+	@GetMapping("/{numero}")
+	public String verPedido(@PathVariable Long numero, Model model) {
+		Pedido pedido = pedidoService.buscarPorNumero(numero);
+		model.addAttribute("pedido", pedido);
+		return "pedidos/ver-pedido";
+	}
 }
