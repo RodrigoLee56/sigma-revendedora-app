@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.rede.sigma.domain.Vendedor.Vendedor;
+import com.rede.sigma.exeption.InvalidUsernameOrPasswordException;
 import com.rede.sigma.exeption.VendedorNotFoundException;
 import com.rede.sigma.repository.VendedorRepository;
 import com.rede.sigma.service.VendedorService;
@@ -51,6 +52,15 @@ public class VendedorServiceImpl implements VendedorService {
 	@Override
 	public Page<Vendedor> listarPaginado(Pageable pageable) {
 		return vendedorRepository.findAll(pageable);
+	}
+
+	@Override
+	public Vendedor login(String usuario, String senha) {
+		Vendedor vendedor = vendedorRepository.findByUsuarioAndSenha(usuario, senha);
+		if (vendedor == null) {
+			throw new InvalidUsernameOrPasswordException("Usuário ou senha inválidos!");
+		}
+		return vendedor;
 	}
 
 }

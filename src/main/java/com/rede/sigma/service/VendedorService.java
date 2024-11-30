@@ -16,6 +16,8 @@ public interface VendedorService {
 
 	Vendedor buscarPorCodigo(Integer codigo);
 
+	Vendedor login(String usuario, String senha);
+
 	List<Vendedor> listarTodos();
 
 	Page<Vendedor> listarPaginado(Pageable pageable);

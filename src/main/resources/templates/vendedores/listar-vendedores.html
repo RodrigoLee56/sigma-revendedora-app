@@ -12,7 +12,6 @@
             <thead>
                 <tr>
                     <th>Código</th>
-                    <th>Nome</th>
                     <th>Usuário</th>
                     <th>Ações</th>
                 </tr>
@@ -20,7 +19,6 @@
             <tbody>
                 <tr th:each="vendedor : ${vendedores}">
                     <td th:text="${vendedor.codigo}"></td>
-                    <td th:text="${vendedor.nome}"></td>
                     <td th:text="${vendedor.usuario}"></td>
                     <td>
                         <a th:href="@{/vendedores/editar/{codigo}(codigo=${vendedor.codigo})}" class="btn btn-warning">Editar</a>

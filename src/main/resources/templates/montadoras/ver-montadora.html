@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalhes da Montadora</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-5">
+        <h2>Detalhes da Montadora</h2>
+        <p><strong>CNPJ:</strong> <span th:text="${montadora.cnpj}"></span></p>
+        <p><strong>Razão Social:</strong> <span th:text="${montadora.razaoSocial}"></span></p>
+        <p><strong>Marca:</strong> <span th:text="${montadora.marca}"></span></p>
+        <p><strong>Contato:</strong> <span th:text="${montadora.contato}"></span></p>
+        <p><strong>Telefone:</strong> <span th:text="${montadora.telefone}"></span></p>
+        <a href="/montadoras" class="btn btn-secondary">Voltar</a>
+    </div>
+</body>
+</html>

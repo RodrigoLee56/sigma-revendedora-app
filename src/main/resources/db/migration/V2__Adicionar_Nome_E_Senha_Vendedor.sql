@@ -1,0 +1,5 @@
+ALTER TABLE vendedores
+    ADD COLUMN nome VARCHAR(255) NOT NULL;
+
+ALTER TABLE vendedores
+    ADD COLUMN senha VARCHAR(50) NOT NULL;

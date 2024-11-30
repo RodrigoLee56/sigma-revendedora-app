@@ -1,0 +1,61 @@
+/* Corpo da página */
+body {
+	background-color: #111111; /* Preto */
+	color: #f2c04f; /* Dourado */
+}
+
+/* Navbar */
+.navbar {
+	background-color: #000000;
+}
+
+.navbar .nav-link {
+	color: #f2c04f !important; /* Dourado para links */
+}
+
+.navbar .navbar-brand {
+	color: #f2c04f !important; /* Dourado para a marca */
+	margin-left: 5px;
+}
+
+/* Jumbotron (Banner) */
+.jumbotron {
+	background-color: #000000;
+	color: #f2c04f;
+	padding: 30px;
+	text-align: center;
+}
+
+.container {
+	background-color: #111111; /* Preto */
+	color: #f2c04f; /* Dourado */
+}
+
+/* Botões */
+.container .btn {
+	background-color: #f2c04f;
+	border-color: #f2c04f;
+}
+
+.container .btn:hover {
+	background-color: #b58c2c;
+	border-color: #b58c2c;
+}
+
+/* Layout dos Cards */
+.card {
+	background-color: #222222;
+	border: 1px solid #f2c04f;
+}
+
+.card-title {
+	color: #f2c04f;
+}
+
+/* Rodapé */
+footer {
+	background-color: #000000;
+	color: #f2c04f;
+	padding: 10px;
+	text-align: center;
+}
