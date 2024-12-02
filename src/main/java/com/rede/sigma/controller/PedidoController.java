@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.rede.sigma.domain.Cliente.Cliente;
 import com.rede.sigma.domain.Pedido.Pedido;
 import com.rede.sigma.service.ClienteService;
 import com.rede.sigma.service.MontadoraService;
@@ -20,66 +21,70 @@ import com.rede.sigma.service.VendedorService;
 @Controller
 @RequestMapping("/pedidos")
 public class PedidoController {
-	@Autowired
-	private PedidoService pedidoService;
 
-	@Autowired
-	private ClienteService clienteService;
+    @Autowired
+    private PedidoService pedidoService;
 
-	@Autowired
-	private VendedorService vendedorService;
+    @Autowired
+    private ClienteService clienteService;
 
-	@Autowired
-	private MontadoraService montadoraService;
+    @Autowired
+    private VendedorService vendedorService;
 
-	@GetMapping
-	public String listarPedidos(Model model) {
-		List<Pedido> pedidos = pedidoService.listarTodos();
-		model.addAttribute("pedidos", pedidos);
-		return "pedidos/listar-pedidos";
-	}
+    @Autowired
+    private MontadoraService montadoraService;
 
-	@GetMapping("/novo")
-	public String novoPedido(Model model) {
-		model.addAttribute("pedido", new Pedido());
-		model.addAttribute("clientes", clienteService.listarTodos());
-		model.addAttribute("vendedores", vendedorService.listarTodos());
-		model.addAttribute("montadoras", montadoraService.listarTodas());
-		return "pedidos/form-pedido";
-	}
+    @GetMapping
+    public String listarPedidos(Model model) {
+        List<Pedido> pedidos = pedidoService.listarTodos();
+        model.addAttribute("pedidos", pedidos);
+        return "pedidos/listar-pedidos";
+    }
 
-	@PostMapping("/salvar")
-	public String salvarPedido(@ModelAttribute Pedido pedido) {
-		pedidoService.salvar(pedido);
-		return "redirect:/pedidos";
-	}
+    @GetMapping("/novo")
+    public String novoPedido(Model model) {
+        model.addAttribute("pedido", new Pedido());
+        model.addAttribute("clientes", clienteService.listarTodos());
+        model.addAttribute("vendedores", vendedorService.listarTodos());
+        model.addAttribute("montadoras", montadoraService.listarTodas());
+        return "pedidos/form-pedido";
+    }
 
-	@GetMapping("/editar/{numero}")
-	public String editarPedido(@PathVariable Long numero, Model model) {
-		Pedido pedido = pedidoService.buscarPorNumero(numero);
-		model.addAttribute("pedido", pedido);
-		model.addAttribute("clientes", clienteService.listarTodos());
-		model.addAttribute("vendedores", vendedorService.listarTodos());
-		model.addAttribute("montadoras", montadoraService.listarTodas());
-		return "pedidos/form-pedido";
-	}
+    @PostMapping("/salvar")
+    public String salvarPedido(@ModelAttribute Pedido pedido) {
+        Cliente cliente = clienteService.buscarPorCpf(pedido.getCliente().getCpf());
+        pedido.setCliente(cliente);
 
-	@PostMapping("/atualizar")
-	public String atualizarPedido(@ModelAttribute Pedido pedido) {
-		pedidoService.atualizar(pedido.getNumero(), pedido);
-		return "redirect:/pedidos";
-	}
+        pedidoService.salvar(pedido);
+        return "redirect:/pedidos";
+    }
 
-	@GetMapping("/deletar/{numero}")
-	public String deletarPedido(@PathVariable Long numero) {
-		pedidoService.deletar(numero);
-		return "redirect:/pedidos";
-	}
+    @GetMapping("/editar/{numero}")
+    public String editarPedido(@PathVariable Long numero, Model model) {
+        Pedido pedido = pedidoService.buscarPorNumero(numero);
+        model.addAttribute("pedido", pedido);
+        model.addAttribute("clientes", clienteService.listarTodos());
+        model.addAttribute("vendedores", vendedorService.listarTodos());
+        model.addAttribute("montadoras", montadoraService.listarTodas());
+        return "pedidos/form-pedido";
+    }
 
-	@GetMapping("/{numero}")
-	public String verPedido(@PathVariable Long numero, Model model) {
-		Pedido pedido = pedidoService.buscarPorNumero(numero);
-		model.addAttribute("pedido", pedido);
-		return "pedidos/ver-pedido";
-	}
+    @PostMapping("/atualizar")
+    public String atualizarPedido(@ModelAttribute Pedido pedido) {
+        pedidoService.atualizar(pedido.getNumero(), pedido);
+        return "redirect:/pedidos";
+    }
+
+    @GetMapping("/deletar/{numero}")
+    public String deletarPedido(@PathVariable Long numero) {
+        pedidoService.deletar(numero);
+        return "redirect:/pedidos";
+    }
+
+    @GetMapping("/{numero}")
+    public String verPedido(@PathVariable Long numero, Model model) {
+        Pedido pedido = pedidoService.buscarPorNumero(numero);
+        model.addAttribute("pedido", pedido);
+        return "pedidos/ver-pedido";
+    }
 }

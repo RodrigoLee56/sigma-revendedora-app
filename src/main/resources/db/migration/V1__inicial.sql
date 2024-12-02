@@ -10,7 +10,9 @@ CREATE TABLE clientes (
 -- Criação da tabela de Vendedores
 CREATE TABLE vendedores (
     codigo SERIAL PRIMARY KEY,
-    usuario VARCHAR(50) NOT NULL
+    usuario VARCHAR(50) NOT NULL,
+    nome VARCHAR(255) NOT NULL, 
+    senha VARCHAR(50) NOT NULL
 );
 
 -- Criação da tabela de Veículos
@@ -32,15 +34,15 @@ CREATE TABLE operacoes (
     cliente_cpf VARCHAR(11) NOT NULL,
     vendedor_codigo INT NOT NULL,
     veiculo_chassi VARCHAR(17) NOT NULL,
+    veiculo_numero_chassi VARCHAR(255),
     valor_entrada DECIMAL(10, 2),
     valor_financiado DECIMAL(10, 2),
     valor_total DECIMAL(10, 2) NOT NULL,
+    tipo_operacao VARCHAR(10) NOT NULL DEFAULT 'VENDA',
     CONSTRAINT fk_cliente_operacao FOREIGN KEY (cliente_cpf) REFERENCES clientes (cpf),
     CONSTRAINT fk_vendedor_operacao FOREIGN KEY (vendedor_codigo) REFERENCES vendedores (codigo),
     CONSTRAINT fk_veiculo_operacao FOREIGN KEY (veiculo_chassi) REFERENCES veiculos (numero_chassi)
 );
-
-ALTER TABLE operacoes ADD COLUMN veiculo_numero_chassi VARCHAR(255);
 
 -- Criação da tabela de Montadoras
 CREATE TABLE montadoras (

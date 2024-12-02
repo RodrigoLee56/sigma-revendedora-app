@@ -18,7 +18,12 @@ spring:
     url: jdbc:postgresql://localhost:5433/rede_sigma
     user: postgres
     password: changemeinprod! 
+    baseline-on-migrate: true
     
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
+  
+  server:
+    servlet:
+      context-path: /

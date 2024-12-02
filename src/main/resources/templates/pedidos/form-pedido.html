@@ -10,20 +10,21 @@
         <form th:action="@{/pedidos/salvar}" th:object="${pedido}" method="post">
             <div class="mb-3">
                 <label for="cliente" class="form-label">Cliente</label>
-                <select id="cliente" th:field="*{cliente}" class="form-control" required>
-                    <option th:each="cliente : ${clientes}" th:value="${cliente}" th:text="${cliente.nome}"></option>
+                <!-- Agora envia o CPF do cliente, em vez do objeto -->
+                <select id="cliente" th:field="*{cliente.cpf}" class="form-control" required>
+                    <option th:each="cliente : ${clientes}" th:value="${cliente.cpf}" th:text="${cliente.nome}"></option>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="vendedor" class="form-label">Vendedor</label>
-                <select id="vendedor" th:field="*{vendedor}" class="form-control" required>
-                    <option th:each="vendedor : ${vendedores}" th:value="${vendedor}" th:text="${vendedor.nome}"></option>
+                <select id="vendedor" th:field="*{vendedor.codigo}" class="form-control" required>
+                    <option th:each="vendedor : ${vendedores}" th:value="${vendedor.codigo}" th:text="${vendedor.nome}"></option>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="montadora" class="form-label">Montadora</label>
-                <select id="montadora" th:field="*{montadora}" class="form-control" required>
-                    <option th:each="montadora : ${montadoras}" th:value="${montadora}" th:text="${montadora.razaoSocial}"></option>
+                <select id="montadora" th:field="*{montadora.cnpj}" class="form-control" required>
+                    <option th:each="montadora : ${montadoras}" th:value="${montadora.cnpj}" th:text="${montadora.razaoSocial}"></option>
                 </select>
             </div>
             <div class="mb-3">

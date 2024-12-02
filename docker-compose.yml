@@ -1,12 +1,30 @@
 version: '3.8'
 
 services:
-  postgres:
+  db:
     image: postgres:14
-    restart: always
+    container_name: postgres-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: changemeinprod!
       POSTGRES_DB: rede_sigma
     ports:
       - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  flyway:
+    image: flyway/flyway:latest
+    container_name: flyway-migration
+    depends_on:
+      - db
+    entrypoint: ["flyway", "migrate"]
+    environment:
+      - FLYWAY_URL=jdbc:postgresql://db:5432/rede_sigma
+      - FLYWAY_USER=postgres
+      - FLYWAY_PASSWORD=changemeinprod!
+    volumes:
+      - ./migrations:/flyway/sql
+
+volumes:
+  db_data:

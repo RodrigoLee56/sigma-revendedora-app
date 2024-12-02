@@ -3,6 +3,8 @@ package com.rede.sigma.domain.Pedido;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.rede.sigma.domain.Cliente.Cliente;
 import com.rede.sigma.domain.Montadora.Montadora;
 import com.rede.sigma.domain.Vendedor.Vendedor;
@@ -12,6 +14,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -27,12 +30,14 @@ public class Pedido {
 	private Long numero;
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date data;
 
 	@ManyToOne
 	private Cliente cliente;
 
 	@ManyToOne
+	@JoinColumn(name = "vendedor_codigo")
 	private Vendedor vendedor;
 
 	@ManyToOne

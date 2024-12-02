@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Operação</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container py-5">
+    <h1>Detalhes da Operação</h1>
+    <p><strong>Número:</strong> <span th:text="${operacao.numero}"></span></p>
+    <p><strong>Data:</strong> <span th:text="${#dates.format(operacao.data, 'dd/MM/yyyy')}"></span></p>
+    <p><strong>Cliente:</strong> <span th:text="${operacao.cliente.nome}"></span></p>
+    <p><strong>Vendedor:</strong> <span th:text="${operacao.vendedor.nome}"></span></p>
+    <p><strong>Veículo:</strong> <span th:text="${operacao.veiculo.modelo}"></span></p>
+    <p><strong>Tipo de Operação:</strong> <span th:text="${operacao.tipo}"></span></p>
+    <p><strong>Valor Entrada:</strong> R$ <span th:text="${operacao.valorEntrada}"></span></p>
+    <p><strong>Valor Financiado:</strong> R$ <span th:text="${operacao.valorFinanciado}"></span></p>
+    <p><strong>Valor Total:</strong> R$ <span th:text="${operacao.valorTotal}"></span></p>
+    <a href="/operacoes" class="btn btn-secondary">Voltar</a>
+</div>
+</body>
+</html>
